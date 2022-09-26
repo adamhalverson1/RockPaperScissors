@@ -1,56 +1,55 @@
 //https://www.youtube.com/watch?v=n7Xoaso0uFM&ab_channel=BugNinza
 //video tutorial
 
-import React, {useState, useRef } from "react";
-import { StyleSheet, SafeAreaView, Text, View, Animated} from 'react-native'
-import Constants from 'expo-constants'
-import DisplayResult from "./DisplayResult";
-import Actions from "./Actions";
-import Header from "./Header";
+import React, { useState, useRef } from 'react';
+import { StyleSheet, SafeAreaView, Text, View, Animated } from 'react-native';
+import  Constants  from 'expo-constants';
+import Actions from './Actions';
+import DisplayResult from './DisplayResult';
+import Header from './Header';
 
 
-export default function RockPaperScissors (){
+export default function RockPaper(){
     const [userChoice, setUserChoice] = useState(0);
-    const [computerChoice, setComputerChoice] =useState(0);
-    const [result, setResult] =useState("");
+    const [computerChoice, setComputerChoice] = useState(0);
+    const [result, setResult] = useState("");
     const [canPlay, setPlay] = useState(true);
 
-    //animations
-    const fadeAnimation = useRef (new Animated.Value(1)).current;
+    // For Animation
+    const fadeAnimation = useRef(new Animated.Value(1)).current;
 
+    function play(choice){
+        // We have 3 choice
+        // 1 = rock
+        // 2 = paper
+        // 3 = scissors
 
-    function play (choice) {
-
-        // 1 = Rock
-        // 2 = Paper
-        // 3 = Scissors
-
-        const randomComputerChoice = Math.floor(Math.random() *3 ) + 1;
+        const randomComputerChoice = Math.floor(Math.random() * 3) + 1;
         let resultString = "";
 
         if (choice === 1) {
-            resultString = randomComputerChoice === 3 ? "Win" : "Lose";
+            resultString = randomComputerChoice === 3 ? "WIN" : "LOSE";
         }
         else if (choice === 2) {
-            resultString = randomComputerChoice === 1 ? "Win" : "Lose";
+            resultString = randomComputerChoice === 1 ? "WIN" : "LOSE";
         }
-        else{
-            resultString = randomComputerChoice === 2 ? "Win" : "Lose";
+        else {
+            resultString = randomComputerChoice === 2 ? "WIN" : "LOSE";
         }
 
         if (choice === randomComputerChoice){
-            resultString = "Tie game, try again"
+            resultString = "DRAW";
         }
 
         setUserChoice(choice);
         setComputerChoice(randomComputerChoice);
 
-        //wait - animation hiding old results
+        // Wait animation hide old result
         setTimeout(() => {
-            setResult(resultString)
+            setResult(resultString);
         }, 300);
 
-        //animation hide old results, shows new
+        // Animation hide old result and show new result
         Animated.sequence([
             Animated.timing(fadeAnimation, {
                 toValue:0,
@@ -61,33 +60,31 @@ export default function RockPaperScissors (){
                 toValue:1,
                 duration:300,
                 useNativeDriver: true,
-            })           
+            }),
         ]).start();
 
-        //Disable action when animation is running 
+        // Disable action when animation running
         setPlay(false);
         setTimeout(() => {
             setPlay(true);
-        }, 600);
-
+        },600);
     }
 
-
-    //return the view 
+    // return the view
     return(
         <SafeAreaView style={styles.container}>
             <Header/>
             <View style={styles.content}>
                 <View style={styles.result}>
                     <Animated.Text
-                    style={[styles.resultText, {opacity: fadeAnimation}]}
+                        style={[styles.resultText, {opacity: fadeAnimation}]}
                     >
                         {result}
                     </Animated.Text>
                 </View>
                 <View style={styles.screen}>
                     {!result ? (
-                        <Text style={styles.readyText}>Let's Play!</Text>
+                        <Text style={styles.readyText}>Let's Play</Text>
                     ) : (
                         <DisplayResult 
                             userChoice={userChoice}
@@ -95,47 +92,41 @@ export default function RockPaperScissors (){
                         />
                     )}
                 </View>
-                    <Actions 
-                        play={play} canPlay={canPlay}
-                    />
+                <Actions play={play} canPlay={canPlay} />
             </View>
         </SafeAreaView>
     );
 }
 
-
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      paddingTop: Constants.statusBarHeight,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex:1,
+        paddingTop: Constants.statusBarHeight,   
     },
-    content:{
-        flex: 1,
-        marginBottom: 5,
-        backgroundColor: '#e8eaed',  
+    content: {
+        flex:1,
+        marginBottom:5,   
+        backgroundColor:'#e8eaed'
     },
-    result: {
-        height: 100,
-        justifyContent: "flex-end",
+    result : {
+        height:100,
+        justifyContent:'flex-end',
         alignItems: "center",
     },
-    resultText: {
+    resultText:{
         fontSize: 48,
-        fontWeight: "bold",
+        fontWeight:"bold",
     },
     screen: {
-        flex: 1,
-        flexDirection: "row" 
+        flex:1,
+        flexDirection:'row',
     },
     readyText: {
-        marginTop: -48,
-        alignSelf: 'center',
-        textAlign: "center",
-        width: "100%",
-        fontSize: 48,
-        fontWeight: "bold",
-    },
-  });
+        marginTop:-48,
+        alignSelf:'center',
+        textAlign:'center',
+        width:'100%',
+        fontSize:48,
+        fontWeight:'bold',
+    }
+});
