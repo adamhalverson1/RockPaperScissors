@@ -1,11 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, } from 'react-native';
+import RockPaperScissors from './components/RockPaperScissors';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <RockPaperScissors/>
+      <BannerAd style={styles.bannerAd}
+            unitId={TestIds.BANNER} //Test ID
+            //unitID={ca-app-pub-3345304889044888/6748235043} // Production Unit ID 
+            sizes={[BannerAdSize.FULL_BANNER]}
+            requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+            }}
+    />
     </View>
   );
 }
@@ -13,8 +21,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-});
+  bannerAd: {
+    justifyContent: 'flex-end'
+
+  }
+  }  )
+
+
