@@ -28,7 +28,7 @@ export default function RockPaper(){
         let resultString = "";
 
         if (choice === 1) {
-            resultString = randomComputerChoice === 3 ? "WIN" : "LOSE";
+            resultString = randomComputerChoice === 3 ? "Congratsm, You Win!" : "Sorry, you lose.";
         }
         else if (choice === 2) {
             resultString = randomComputerChoice === 1 ? "WIN" : "LOSE";
@@ -38,7 +38,7 @@ export default function RockPaper(){
         }
 
         if (choice === randomComputerChoice){
-            resultString = "DRAW";
+            resultString = "Tie game";
         }
 
         setUserChoice(choice);
@@ -84,7 +84,7 @@ export default function RockPaper(){
                 </View>
                 <View style={styles.screen}>
                     {!result ? (
-                        <Text style={styles.readyText}>Let's Play</Text>
+                        <Text style={styles.readyText}>Do you think you can beat me? Lets play Rock, Paper, Scissors!</Text>
                     ) : (
                         <DisplayResult 
                             userChoice={userChoice}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     content: {
         flex:1,
         marginBottom:5,   
-        backgroundColor:'#e8eaed'
+        backgroundColor:'#D3D3D3'
     },
     result : {
         height:100,
@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     readyText: {
-        marginTop:-48,
+        marginTop:- 48,
         alignSelf:'center',
         textAlign:'center',
         width:'100%',
-        fontSize:48,
+        fontSize:32,
         fontWeight:'bold',
     }
 });
