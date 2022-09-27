@@ -6,7 +6,7 @@ import { Appbar } from 'react-native-paper';
 const Header = () => {
 
   return (
-    <Appbar.Header style={{backgroundColor:'#D3D3D3'}}>
+    <Appbar.Header style={{backgroundColor:'#acaeb0'}}>
       <Appbar.Content title="Rock Paper Scissor" style={{ alignItems: 'center', transform:[{scaleX: 1.5}, {scaleY: 1.5}]}}/>
     </Appbar.Header>
   );
