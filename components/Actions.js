@@ -10,7 +10,12 @@ const Actions = ({play, canPlay}) => {
         style={styles.actionButton}
         onPress={() => play(1)}
       >
-          <FontAwesome5 name={'hand-rock'} size={32} color='#6a5300' />
+          <FontAwesome5 
+            name={'hand-rock'}  
+            size={64} 
+            color='white'
+            solid
+          />
       </TouchableOpacity>
 
       <TouchableOpacity         // paper
@@ -18,7 +23,12 @@ const Actions = ({play, canPlay}) => {
         style={styles.actionButton}
         onPress={() => play(2)}
       > 
-        <FontAwesome5 name='hand-paper' size={32} color='#6a5300' />
+        <FontAwesome5 
+          name='hand-paper' 
+          size={64} 
+          color='white'
+          solid 
+        />
       </TouchableOpacity>
 
       <TouchableOpacity         // scissors
@@ -28,10 +38,10 @@ const Actions = ({play, canPlay}) => {
       >
         <FontAwesome5 
             name='hand-scissors'
-            size={32}
-            color='#6a5300'
-            style={{ transform: [{rotate: '67deg'}]}}
-        />
+            size={64}
+            color='white'
+            solid
+          />
       </TouchableOpacity>
 
     </View>
@@ -42,16 +52,17 @@ const styles = StyleSheet.create({
     actions: {
         height:100,
         flexDirection:'row',
-        justifyContent:'space-around',
+        justifyContent:'space-evenly',
         alignItems:'center',
+        marginBottom: 15
     },
     actionButton: {
-        width:64,
-        height: 64,
+        width:95,
+        height: 100,
         justifyContent: 'center',
         alignItems:'center',
-        backgroundColor:'#f9d835',
-        borderRadius:32
+        backgroundColor:'#8FBC8F',
+        borderRadius:25,        
     }
 });
 

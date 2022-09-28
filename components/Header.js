@@ -1,15 +1,33 @@
 import * as React from 'react';
-import { Appbar } from 'react-native-paper';
+import { Appbar, Colors } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
 
 // Heading of Fedd page
 
 const Header = () => {
 
   return (
-    <Appbar.Header style={{backgroundColor:'#acaeb0'}}>
-      <Appbar.Content title="Rock Paper Scissor" style={{ alignItems: 'center', transform:[{scaleX: 1.5}, {scaleY: 1.5}]}}/>
+    <Appbar.Header style={{
+        backgroundColor:'#8FBC8F',    
+        marginTop: 10,
+        marginBottom: 10
+        }}>
+      <Appbar.Content 
+        title="Lets Play Rock Paper Sissors!" 
+        titleStyle={styles.content}        
+      />
     </Appbar.Header>
   );
 };
+
+
+const styles = StyleSheet.create({
+  content: {
+    alignSelf: 'center',
+    transform:[{scaleX: 1.4}, {scaleY: 1.4}],
+    color: 'white'
+  },
+
+})
 
 export default Header;

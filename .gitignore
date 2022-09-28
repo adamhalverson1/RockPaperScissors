@@ -10,8 +10,15 @@ npm-debug.*
 *.orig.*
 web-build/
 
+
 # macOS
 .DS_Store
 
 #Google Play Store service account API Key 
 pc-api-5284184025627773459-512-a39d0bbd220b.json
+
+#build packages
+*.apk
+*.aab
+
+notes.txt

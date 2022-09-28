@@ -4,6 +4,7 @@ import  Constants  from 'expo-constants';
 import Actions from './Actions';
 import DisplayResult from './DisplayResult';
 import Header from './Header';
+//import Score from './Score';
 
 
 export default function RockPaper(){
@@ -15,27 +16,36 @@ export default function RockPaper(){
     // For Animation
     const fadeAnimation = useRef(new Animated.Value(1)).current;
 
+    //Win variable 
+    const winner = 'Congrats! You won!'
+
+    //Lose variable
+    const loser = 'Sorry, you lost.'
+
+    //function for game play 
     function play(choice){
-        // We have 3 choice
         // 1 = rock
         // 2 = paper
         // 3 = scissors
 
+        //generating a random choice for the computer
         const randomComputerChoice = Math.floor(Math.random() * 3) + 1;
+
+        //creating an empty string for displaying the results. 
         let resultString = "";
 
+        //displaying the results based on player and computer selections 
         if (choice === 1) {
-            resultString = randomComputerChoice === 3 ? "WIN" : "LOSE";
+            resultString = randomComputerChoice === 3 ? winner : loser;
         }
         else if (choice === 2) {
-            resultString = randomComputerChoice === 1 ? "WIN" : "LOSE";
+            resultString = randomComputerChoice === 1 ? winner : loser;
         }
         else {
-            resultString = randomComputerChoice === 2 ? "WIN" : "LOSE";
+            resultString = randomComputerChoice === 2 ? winner : loser;
         }
-
         if (choice === randomComputerChoice){
-            resultString = "DRAW";
+            resultString = "Tie game! Play again?";
         }
 
         setUserChoice(choice);
@@ -67,21 +77,38 @@ export default function RockPaper(){
         },600);
     }
 
-    // return the view
+    //scoreboard variables 
+    let playerScore = 0
+    let computerScore = 0
+    let gamesPlayed = 0
+
+    if(userChoice === computerChoice){
+        gamesPlayed ++
+    } 
+    else if (result) {
+        gamesPlayed ++
+    }
+    else{
+        gamesPlayed ++
+    }
+
+
+    //Adding functionality with the views. 
     return(
         <SafeAreaView style={styles.container}>
             <Header/>
+            <View>
+                <Text>{gamesPlayed}</Text>
+            </View>
             <View style={styles.content}>
                 <View style={styles.result}>
-                    <Animated.Text
-                        style={[styles.resultText, {opacity: fadeAnimation}]}
-                    >
+                    <Animated.Text style={[styles.resultText, {opacity: fadeAnimation}]}>
                         {result}
                     </Animated.Text>
                 </View>
                 <View style={styles.screen}>
                     {!result ? (
-                        <Text style={styles.readyText}>Let's Play</Text>
+                        <Text style={styles.readyText}>Think you can beat me?</Text>
                     ) : (
                         <DisplayResult 
                             userChoice={userChoice}
@@ -97,33 +124,45 @@ export default function RockPaper(){
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex:3,
         paddingTop: Constants.statusBarHeight,   
     },
     content: {
-        flex:1,
+        flex:2,
         marginBottom:5,   
-        backgroundColor:'#e8eaed'
+        backgroundColor:'#696969'
     },
     result : {
-        height:100,
-        justifyContent:'flex-end',
+        height:200,
+        justifyContent:'center',
         alignItems: "center",
+
     },
     resultText:{
         fontSize: 48,
         fontWeight:"bold",
+        alignItems: "center",
+        color:'white'
     },
     screen: {
-        flex:1,
+        flex:4,
         flexDirection:'row',
     },
     readyText: {
-        marginTop:-48,
+        marginBottom: 150,
         alignSelf:'center',
         textAlign:'center',
         width:'100%',
         fontSize:48,
         fontWeight:'bold',
-    }
+        color: 'white',
+
+    },
+    scoreBoard: {
+        flex: .25,
+        flexDirection: 'row',
+        justifyContent:'space-evenly',
+        borderStyle: 'solid',
+    },
+
 });
