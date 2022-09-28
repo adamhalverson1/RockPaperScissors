@@ -17,7 +17,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#696969',
+    backgroundColor: '#5F5F5F',
   },
   bannerAd: {
     justifyContent: 'flex-end'

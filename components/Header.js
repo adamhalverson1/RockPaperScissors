@@ -8,9 +8,9 @@ const Header = () => {
 
   return (
     <Appbar.Header style={{
-        backgroundColor:'#8FBC8F',    
-        marginTop: 10,
-        marginBottom: 10
+        backgroundColor:'#556B2F',    
+        marginTop: 20,
+        marginBottom: 20
         }}>
       <Appbar.Content 
         title="Lets Play Rock Paper Sissors!" 

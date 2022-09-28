@@ -12,6 +12,10 @@ export default function RockPaper(){
     const [computerChoice, setComputerChoice] = useState(0);
     const [result, setResult] = useState("");
     const [canPlay, setPlay] = useState(true);
+    const [game, setGame] = useState(0);
+    const [playerScore, setPlayerScore] = useState(0);
+    const [computerScore, setComputerScore] = useState(0);
+    
 
     // For Animation
     const fadeAnimation = useRef(new Animated.Value(1)).current;
@@ -48,6 +52,13 @@ export default function RockPaper(){
             resultString = "Tie game! Play again?";
         }
 
+        if (resultString === winner){
+            setPlayerScore( playerScore + 1 )
+        }
+        else if (resultString === loser){
+            setComputerScore(computerScore + 1)
+        }
+
         setUserChoice(choice);
         setComputerChoice(randomComputerChoice);
 
@@ -74,22 +85,8 @@ export default function RockPaper(){
         setPlay(false);
         setTimeout(() => {
             setPlay(true);
+        setGame(game + 1)
         },600);
-    }
-
-    //scoreboard variables 
-    let playerScore = 0
-    let computerScore = 0
-    let gamesPlayed = 0
-
-    if(userChoice === computerChoice){
-        gamesPlayed ++
-    } 
-    else if (result) {
-        gamesPlayed ++
-    }
-    else{
-        gamesPlayed ++
     }
 
 
@@ -97,9 +94,32 @@ export default function RockPaper(){
     return(
         <SafeAreaView style={styles.container}>
             <Header/>
-            <View>
-                <Text>{gamesPlayed}</Text>
+
+            <View style={styles.scoreBoard}>
+                <Text style={styles.gamesText}>Games Played</Text>
+                <View>
+                    <Text style={styles.gamesText}>{game}</Text>
+                </View>
             </View>
+
+            <View style={styles.scoreBoard}>
+                <Text style={styles.gamesText}>Player Score</Text>
+                <View>
+                    <Text style={styles.gamesText}>{playerScore}</Text>
+                </View>
+            </View>
+
+            <View style={styles.scoreBoard}>
+                <Text style={styles.gamesText}>Computer Score</Text>
+                <View>
+                    <Text style={styles.gamesText}>{computerScore}</Text>
+                </View>
+            </View>
+
+
+
+            
+
             <View style={styles.content}>
                 <View style={styles.result}>
                     <Animated.Text style={[styles.resultText, {opacity: fadeAnimation}]}>
@@ -130,7 +150,7 @@ const styles = StyleSheet.create({
     content: {
         flex:2,
         marginBottom:5,   
-        backgroundColor:'#696969'
+        backgroundColor:'#5F5F5F'
     },
     result : {
         height:200,
@@ -149,6 +169,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     readyText: {
+        flex: 1,
         marginBottom: 150,
         alignSelf:'center',
         textAlign:'center',
@@ -159,10 +180,14 @@ const styles = StyleSheet.create({
 
     },
     scoreBoard: {
-        flex: .25,
         flexDirection: 'row',
         justifyContent:'space-evenly',
         borderStyle: 'solid',
+        paddingTop: 5,
     },
+    gamesText: {
+        color: 'white',
+        fontSize: 18,
+    }   
 
 });
