@@ -1,12 +1,15 @@
+//imports for app functionality
 import React, { useState, useRef } from 'react';
 import { StyleSheet, SafeAreaView, Text, View, Animated } from 'react-native';
-import  Constants  from 'expo-constants';
+//import  Constants  from 'expo-constants';
 import Actions from './Actions';
 import DisplayResult from './DisplayResult';
 import Header from './Header';
+import styles from './styles';
 //import Score from './Score';
 
 
+//export the app function
 export default function RockPaper(){
     const [userChoice, setUserChoice] = useState(0);
     const [computerChoice, setComputerChoice] = useState(0);
@@ -22,7 +25,6 @@ export default function RockPaper(){
 
     //Win variable 
     const winner = 'Congrats! You won!'
-
     //Lose variable
     const loser = 'Sorry, you lost.'
 
@@ -90,7 +92,7 @@ export default function RockPaper(){
     }
 
 
-    //Adding functionality with the views. 
+    //Adding UI functionality  
     return(
         <SafeAreaView style={styles.container}>
             <Header/>
@@ -115,9 +117,6 @@ export default function RockPaper(){
                     <Text style={styles.gamesText}>{computerScore}</Text>
                 </View>
             </View>
-
-
-
             
 
             <View style={styles.content}>
@@ -141,53 +140,3 @@ export default function RockPaper(){
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex:3,
-        paddingTop: Constants.statusBarHeight,   
-    },
-    content: {
-        flex:2,
-        marginBottom:5,   
-        backgroundColor:'#5F5F5F'
-    },
-    result : {
-        height:200,
-        justifyContent:'center',
-        alignItems: "center",
-
-    },
-    resultText:{
-        fontSize: 48,
-        fontWeight:"bold",
-        alignItems: "center",
-        color:'white'
-    },
-    screen: {
-        flex:4,
-        flexDirection:'row',
-    },
-    readyText: {
-        flex: 1,
-        marginBottom: 150,
-        alignSelf:'center',
-        textAlign:'center',
-        width:'100%',
-        fontSize:48,
-        fontWeight:'bold',
-        color: 'white',
-
-    },
-    scoreBoard: {
-        flexDirection: 'row',
-        justifyContent:'space-evenly',
-        borderStyle: 'solid',
-        paddingTop: 5,
-    },
-    gamesText: {
-        color: 'white',
-        fontSize: 18,
-    }   
-
-});

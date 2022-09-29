@@ -2,14 +2,14 @@
   "expo": {
     "name": "RockPaperScissors",
     "slug": "RockPaperScissors",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#696969"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,9 +23,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#696969"
+        "backgroundColor": "#FFFFFF"        
       },
-      "package": "com.adamhalverson.RockPaperScissors"
+      "package": "com.adamhalverson.RockPaperScissors",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/icon.png"
@@ -35,5 +36,8 @@
         "projectId": "3e257e20-1016-4120-95b8-77f91e7ffa9f"
       }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3345304889044888~9817784347"
   }
 }
